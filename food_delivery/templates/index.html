@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="m-3">Menu</h1>
+<div class="container">
+    <div class="row">
+        {% for item in menu_items %}
+        <div class="col-4">
+            <div class="card m-2 p-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text"><strong>${{ item.price }}</strong></p>
+                    <a href="{{ url_for('add_to_cart', item_id=item.id) }}" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Button to go to add item page -->
+    <div class="mt-4">
+        <a href="{{ url_for('add_item') }}" class="btn btn-success">Add New Item</a>
+        <a href="{{ url_for('cart') }}" class="btn btn-warning">View Cart</a>
+    </div>
+</div>
+{% endblock %}
